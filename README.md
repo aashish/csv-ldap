@@ -28,7 +28,7 @@ objectClass: organizationalUnit
 ou: people
 ```
 
-Add the content:
+Add the content by run the following command from terminal
 
 ```
 ldapadd -x -D cn=admin,dc=example,dc=com -W -f add_content.ldif
@@ -67,7 +67,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Make sure to run and confirm that node 'people' exists.
+
+```
+$ ldapsearch -x -LLL -H ldap:/// -b dc=example,dc=org dn
+dn: dc=example,dc=org
+
+dn: cn=admin,dc=example,dc=org
+
+dn: ou=people,dc=example,dc=org
+```
+
+### Write in ldap from csv.
+
+```
+$ cd csv-ldap
+$ ruby examples/csv_to_ldap.rb csv-ldap/examples/ldap_data.csv
+```
+
+### Read from ldap to csv.
+
+```
+$ ruby examples/ldap_to_csv.rb output.csv
+```
+
+### Seach with filter from ldap to csv.
+
+```
+$ ruby examples/ldap_to_csv_filtered.rb ldap_to_csv_filtered_output.csv John*
+
+```
 
 ## Development
 
