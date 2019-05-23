@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
     directory to/from CSV files. The tool should be able to create entries in a directory under
     `ou=people,dc=example,dc=org` from a CSV file with the following
     attributes: `cn,sn,mail,uid,homeDirectory,uidNumber,gidNumber`.}
-  spec.homepage      = "TODO: Put your gems website or public repo URL here."
+  spec.homepage      = "https://github.com/aashish/csv-ldap"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"

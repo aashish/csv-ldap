@@ -1,12 +1,53 @@
 # Csv::Ldap
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/csv/ldap`. To experiment with that code, run `bin/console` for an interactive prompt.
+Csv::Ldap for Ruby is a gem for reading/writing entries in an LDAP directory to/from CSV files. The tool should be able to create entries in a directory under `ou=people,dc=example,dc=org` from a CSV file with the following attributes: `cn,sn,mail,uid,homeDirectory,uidNumber,gidNumber`.
 
-TODO: Delete this and the text above, and describe your gem
+Note: This documentation is based on Ubuntu 14.04 LTS
+
+## Pre-Requisites
+
+Install OpenLDAP server.
+
+```
+sudo apt install slapd ldap-utils
+```
+
+Configure with following
+
+```
+sudo dpkg-reconfigure slapd
+```
+
+After configuring the slapd. Create a node called 'people'.
+
+Create the following LDIF file and call it add_content.ldif:
+
+```
+dn: ou=people,dc=example,dc=org
+objectClass: organizationalUnit
+ou: people
+```
+
+Add the content:
+
+```
+ldapadd -x -D cn=admin,dc=example,dc=com -W -f add_content.ldif
+
+Enter LDAP Password: ********
+adding new entry "ou=people,dc=example,dc=org"
+```
+
+Entries will be created in a directory under `ou=people,dc=example,dc=org`
+
+Refer to following for more details
+
+https://help.ubuntu.com/lts/serverguide/openldap-server.html.en#openldap-server-installation
+
+https://www.unixmen.com/install-openldap-in-ubuntu-15-10-and-debian-8/
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application"s Gemfile:
 
 ```ruby
 gem 'csv-ldap'
@@ -19,6 +60,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install csv-ldap
+
+## Features
+- Create entries in an LDAP directory from a CSV file.
+- Export entries returned from an LDAP search to a CSV file. The search filter should come from a command line argument.
 
 ## Usage
 
