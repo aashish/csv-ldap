@@ -28,7 +28,7 @@ objectClass: organizationalUnit
 ou: people
 ```
 
-Add the content by run the following command from terminal
+Add the content by running the following command from terminal
 
 ```
 ldapadd -x -D cn=admin,dc=example,dc=com -W -f add_content.ldif
